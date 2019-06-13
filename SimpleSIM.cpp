@@ -4,11 +4,11 @@
 
 #include "SimpleSIM.h"
 
-// Configure reset pin and issue initial reset to the module
+// Configure reset pin
 void SimpleSIM::begin()
 {
+	digitalWrite(m_rst_pin, HIGH);
 	pinMode(m_rst_pin, OUTPUT);
-	reset();
 }
 
 // Issue reset to the module

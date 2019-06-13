@@ -61,7 +61,7 @@ public:
 		hook->m_next = m_hook_chain;
 		m_hook_chain = hook;
 	}
-	// Configure reset pin and issue initial reset to the module
+	// Configure reset pin
 	void begin();
 	// Issue reset to the module
 	void reset();
