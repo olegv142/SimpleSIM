@@ -28,12 +28,13 @@ The following figure shows how to use hook to query signal quality information.
 To query signal quality information the code calls send_cmd("+CSQ") on the SimpleSIM class instance.
 The method implementation adds "AT" prefix and send resultant string to the GSM module. The module
 respond with signal quality report "+CSQ: ..." followed by completion status "OK" on success or "ERROR"
-on failure. The SimpleSIM class instance does not handle signal quality report by itself. It just wait
-the completion status reception and return to the caller. All other strings received from GSM module are
+on failure. The SimpleSIM class instance does not handle signal quality report by itself. It just wait for
+the completion status reception and returns to the caller. All other strings received from GSM module are
 handled by SIMHook class instances. Should the string received matches the m_prefix field of the hook the
 entire string would be stored in the hook's m_buff field. There are several methods to access that buffer.
 The captured() method returns the number of characters in the buffer. The str() and c_str() return content
-as string or character array pointer. The reset() method erases buffer content.
+as string or character array pointer. The reset() method erases buffer content. Any number of hooks may be
+attached to the SimpleSIM class instance to capture different report strings each with its own prefix.
 
 See SMSEcho for more elaborated example showing how to receive and send SMS messages.
 
