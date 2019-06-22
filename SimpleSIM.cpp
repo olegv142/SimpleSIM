@@ -9,6 +9,7 @@ void SimpleSIM::begin()
 {
 	digitalWrite(m_rst_pin, HIGH);
 	pinMode(m_rst_pin, OUTPUT);
+	m_rst_ts = millis();
 }
 
 // Issue reset to the module
