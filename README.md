@@ -21,7 +21,21 @@ has prefix string matched against the lines received from the module. Whenever t
 matches the whole string will be placed to the hook buffer. The API user may subsequently
 examine captured data.
 
-See SMSEcho example for details.
+The following figure shows how to use hook to query signal quality information.
+
+![Using hook for capturing signal quality report](https://github.com/olegv142/SimpleSIM/blob/master/doc/SimpleSIM.png)
+
+To query signal quality information the code calls send_cmd("+CSQ") on the SimpleSIM class instance.
+The method implementation adds "AT" prefix and send resultant string to the GSM module. The module
+respond with signal quality report "+CSQ: ..." followed by completion status "OK" on success or "ERROR"
+on failure. The SimpleSIM class instance does not handle signal quality report by itself. It just wait
+the completion status reception and return to the caller. All other strings received from GSM module are
+handled by SIMHook class instances. Should the string received matches the m_prefix field of the hook the
+entire string would be stored in the hook's m_buff field. There are several methods to access that buffer.
+The captured() method returns the number of characters in the buffer. The str() and c_str() return content
+as string or character array pointer. The reset() method erases buffer content.
+
+See SMSEcho for more elaborated example showing how to receive and send SMS messages.
 
 ## Author
 
