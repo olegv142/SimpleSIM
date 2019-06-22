@@ -16,7 +16,7 @@ void SimpleSIM::begin()
 void SimpleSIM::reset()
 {
 	digitalWrite(m_rst_pin, LOW);
-	delay(100);
+	delay(150);
 	digitalWrite(m_rst_pin, HIGH);
 	m_rst_ts = millis();
 }
